@@ -64,5 +64,5 @@ The application is visible at port 4200: [http://localhost:4200](http://localhos
 
 
 
-![CopyRight](https://myview.rahulnivi.net/)
+## Copyright Rahul Sahay
 
