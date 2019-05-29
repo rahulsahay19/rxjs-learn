@@ -11,8 +11,8 @@ import {MatCardModule} from '@angular/material/card';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { CoursesCardListComponent } from './courses-card-list/courses-card-list.component';
-import {CourseComponent} from "./course/course.component";
+import { moviesCardListComponent } from './movies-card-list/movies-card-list.component';
+import {MovieComponent} from "./movie/movie.component";
 import {
     MatDatepickerModule,
     MatDialogModule,
@@ -22,7 +22,7 @@ import {
     MatToolbarModule
 } from "@angular/material";
 import {HttpClientModule} from "@angular/common/http";
-import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { MovieDialogComponent } from './movie-dialog/movie-dialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 
@@ -31,9 +31,9 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
         AppComponent,
         HomeComponent,
         AboutComponent,
-        CourseComponent,
-        CoursesCardListComponent,
-        CourseDialogComponent
+        MovieComponent,
+        moviesCardListComponent,
+        MovieDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -63,7 +63,7 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
 
     ],
     bootstrap: [AppComponent],
-    entryComponents: [CourseDialogComponent]
+    entryComponents: [MovieDialogComponent]
 })
 export class AppModule {
 }

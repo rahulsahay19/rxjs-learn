@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Course} from "../model/course";
+import {Movie} from "../model/movie";
 import {
     debounceTime,
     distinctUntilChanged,
@@ -14,15 +14,15 @@ import {
     concatAll, shareReplay
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat} from 'rxjs';
-import {Lesson} from '../model/lesson';
+import {review} from '../model/review';
 
 
 @Component({
-    selector: 'course',
-    templateUrl: './course.component.html',
-    styleUrls: ['./course.component.css']
+    selector: 'movie',
+    templateUrl: './movie.component.html',
+    styleUrls: ['./movie.component.css']
 })
-export class CourseComponent implements OnInit, AfterViewInit {
+export class MovieComponent implements OnInit, AfterViewInit {
 
 
 
@@ -35,7 +35,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
 
-        const courseId = this.route.snapshot.params['id'];
+        const movieId = this.route.snapshot.params['id'];
 
 
 

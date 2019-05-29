@@ -1,0 +1,41 @@
+<div class="movie">
+
+    <ng-container *ngIf="(movie$ | async) as movie">
+
+        <h2>{{movie?.description}}</h2>
+
+        <img class="movie-thumbnail" [src]="movie?.iconUrl">
+
+    </ng-container>
+
+    <mat-form-field class="search-bar">
+
+        <input matInput placeholder="Type your search" #searchInput autocomplete="off">
+
+    </mat-form-field>
+
+
+    <table class="reviews-table mat-elevation-z7" *ngIf="(reviews$ | async) as reviews">
+
+        <thead>
+            <th>#</th>
+            <th>Description</th>
+            <th>Duration</th>
+        </thead>
+
+        <tr *ngFor="let review of reviews">
+            <td class="seqno-cell">{{review.seqNo}}</td>
+            <td class="description-cell">{{review.description}}</td>
+            <td class="duration-cell">{{review.reviewerName}}</td>
+        </tr>
+
+    </table>
+
+
+</div>
+
+
+
+
+
+

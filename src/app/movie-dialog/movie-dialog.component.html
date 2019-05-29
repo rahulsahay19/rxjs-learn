@@ -1,5 +1,5 @@
 
-<h2 mat-dialog-title>{{course.description}}</h2>
+<h2 mat-dialog-title>{{movie.longDescription}}</h2>
 
 
 <mat-dialog-content [formGroup]="form">
@@ -7,7 +7,7 @@
     <mat-form-field>
 
         <input matInput
-                placeholder="Course Description"
+                placeholder="Movie Description"
                formControlName="description">
 
     </mat-form-field>
@@ -17,12 +17,12 @@
         <mat-select placeholder="Select category"
             formControlName="category">
 
-            <mat-option value="BEGINNER">
-                Beginner</mat-option>
-            <mat-option value="INTERMEDIATE">
-                Intermediate</mat-option>
-            <mat-option value="ADVANCED">
-                Advanced</mat-option>
+            <mat-option value="Fiction">
+                Fiction</mat-option>
+            <mat-option value="Action">
+                Action</mat-option>
+            <mat-option value="Suspense">
+                Suspense</mat-option>
 
         </mat-select>
 
