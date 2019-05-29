@@ -11,7 +11,7 @@ export function getAllMovies(req: Request, res: Response) {
     const error = (Math.random() >= 0.5);
 
     if (error) {
-        console.log("ERROR loading courses!");
+        console.log("ERROR loading movies!");
         res.status(500).json({message: 'random error occurred.'});
     }
     else { */

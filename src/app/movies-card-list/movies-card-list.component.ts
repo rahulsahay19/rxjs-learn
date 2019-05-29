@@ -20,7 +20,7 @@ export class moviesCardListComponent implements OnInit {
 
     }
 
-    editCourse(movie: Movie) {
+    editMovie(movie: Movie) {
 
         const dialogConfig = new MatDialogConfig();
 
