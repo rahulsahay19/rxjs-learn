@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
    });
 
    http$.subscribe(
-     courses => console.log(courses),
+     movies => console.log(movies),
      noop, //basically means no operation
      () => console.log('completed')
    );
