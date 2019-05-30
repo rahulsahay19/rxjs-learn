@@ -30,7 +30,7 @@ export class MovieDialogComponent implements OnInit, AfterViewInit {
 
         this.form = fb.group({
             longDescription: [movie.longDescription, Validators.required],
-            category: [movie.category, Validators.required],
+            genre: [movie.genre, Validators.required],
             reviewsCount: [movie.reviewsCount, Validators.required],
             directorName: [movie.directorName, Validators.required],
             releasedAt: [moment(), Validators.required]

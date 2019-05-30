@@ -4,6 +4,6 @@ export interface Movie {
     iconUrl: string;
     directorName: string;
     longDescription: string;
-    category: string;
+    genre: string;
     reviewsCount: number;
 }

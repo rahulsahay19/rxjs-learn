@@ -20,7 +20,7 @@ export function searchReviews(req: Request, res: Response) {
     let reviews = Object.values(REVIEWS).filter(review => review.movieId === reviewId).sort((l1, l2) => l1.id - l2.id);
 
     if (filter) {
-       reviews = reviews.filter(review => review.description.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
+       reviews = reviews.filter(review => review.comment.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
     }
 
     if (sortOrder === 'desc') {
