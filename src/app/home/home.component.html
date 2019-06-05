@@ -8,7 +8,7 @@
         <mat-tab label="Thriller">
 
             <movies-card-list
-            [movies]="[]">
+            [movies]="thrillerMovies$ | async">
         </movies-card-list>
 
             <!-- after 3rd example <movies-card-list
@@ -21,7 +21,7 @@
         <mat-tab label="Action">
 
         <movies-card-list
-            [movies]="[]">
+            [movies]="actionMovies$ | async">
         </movies-card-list>
 
             <!-- after 3rd <movies-card-list

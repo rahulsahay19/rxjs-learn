@@ -1,5 +1,5 @@
 
-<h2 mat-dialog-title>{{movie.longDescription}}</h2>
+<h2 mat-dialog-title>{{movie.name}}</h2>
 
 
 <mat-dialog-content [formGroup]="form">
@@ -7,8 +7,8 @@
     <mat-form-field>
 
         <input matInput
-                placeholder="Movie Description"
-               formControlName="description">
+                placeholder="Movie Name"
+               formControlName="name">
 
     </mat-form-field>
 
