@@ -29,10 +29,7 @@ export function getAllMovies(req: Request, res: Response) {
 export function getMovieById(req: Request, res: Response) {
 
     const movieId = req.params["id"];
-
     const movies: any = Object.values(MOVIES);
-
-    const movie = movies.find(movie => movie.id === movieId);
-
+    const movie = movies.find(movie => movie.id == movieId);
     res.status(200).json(movie);
 }

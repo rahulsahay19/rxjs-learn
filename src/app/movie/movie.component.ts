@@ -14,7 +14,8 @@ import {
     concatAll, shareReplay
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat} from 'rxjs';
-import {review} from '../model/review';
+import {Review} from '../model/review';
+import { createHttpObservable } from '../../common/util';
 
 
 @Component({
@@ -24,31 +25,19 @@ import {review} from '../model/review';
 })
 export class MovieComponent implements OnInit, AfterViewInit {
 
-
-
-    @ViewChild('searchInput') input: ElementRef;
-
-    constructor(private route: ActivatedRoute) {
-
-
+      movie$: Observable<Movie>;
+      reviews$: Observable<Review>;
+      @ViewChild('searchInput') input: ElementRef;
+      constructor(private route: ActivatedRoute) {
+      }
+      ngOnInit() {
+          const movieId = this.route.snapshot.params['id'];
+          this.movie$ = createHttpObservable(`/api/movies/${movieId}`);
+          this.reviews$ = createHttpObservable(`/api/reviews?movieId=${movieId}&pageSize=100`)
+                        .pipe(
+                            map(res => res['payload'])
+                            );
+      }
+      ngAfterViewInit() {
+      }
     }
-
-    ngOnInit() {
-
-        const movieId = this.route.snapshot.params['id'];
-
-
-
-    }
-
-    ngAfterViewInit() {
-
-
-
-
-    }
-
-
-
-
-}
