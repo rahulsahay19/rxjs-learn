@@ -24,35 +24,34 @@ import { createHttpObservable } from '../../common/util';
     styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit, AfterViewInit {
-      movieId: string;
-      movie$: Observable<Movie>;
-      reviews$: Observable<Review[]>;
-
-      @ViewChild('searchInput') input: ElementRef;
-      constructor(private route: ActivatedRoute) {
+        movieId: string;
+        movie$: Observable<Movie>;
+        reviews$: Observable<Review[]>;
+         @ViewChild('searchInput') input: ElementRef;
+          constructor(private route: ActivatedRoute) {
+        }
+        ngOnInit() {
+            this.movieId = this.route.snapshot.params['id'];
+            this.movie$ = createHttpObservable(`/api/movies/${this.movieId}`);
+        }
+        //SwitchMap makes sure that ongoing request gets cancelled and new request gets submitted
+        //once user types in new thing
+        ngAfterViewInit() {
+        const searchReviews$ = fromEvent<any>(this.input.nativeElement, 'keyup')
+            .pipe(
+                map(event => event.target.value),
+                debounceTime(400),
+                distinctUntilChanged(),
+                switchMap(search => this.loadReviews(search))
+           );// ).subscribe(console.log);
+            const initialReviews$ = this.loadReviews();
+            this.reviews$ = concat(initialReviews$, searchReviews$);
+            console.log('Reviews obs:- ', this.reviews$);
+       }
+       loadReviews(search = ''): Observable<Review[]> {
+         return createHttpObservable(`/api/reviews?movieId=${this.movieId}&pageSize=100&filter=${search}`)
+                          .pipe(
+                              map(res => res['payload'])
+                              );
+       }
       }
-      ngOnInit() {
-          this.movieId = this.route.snapshot.params['id'];
-          this.movie$ = createHttpObservable(`/api/movies/${this.movieId}`);
-          
-      }
-      ngAfterViewInit() {
-      const searchReviews$ = fromEvent<any>(this.input.nativeElement, 'keyup')
-          .pipe(
-              map(event => event.target.value),
-              debounceTime(400),
-              distinctUntilChanged(),
-              switchMap(search => this.loadReviews(search))
-         );// ).subscribe(console.log);
-          const initialReviews$ = this.loadReviews();
-          this.reviews$ = concat(initialReviews$, searchReviews$);
-          console.log('Reviews obs:- ', this.reviews$);
-     }
-
-     loadReviews(search = ''): Observable<Review[]> {
-       return createHttpObservable(`/api/reviews?movieId=${this.movieId}&pageSize=100&filter=${search}`)
-                        .pipe(
-                            map(res => res['payload'])
-                            );
-     }
-    }
