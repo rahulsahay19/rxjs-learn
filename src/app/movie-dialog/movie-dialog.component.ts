@@ -40,39 +40,12 @@ export class MovieDialogComponent implements OnInit, AfterViewInit {
     }
 
       ngOnInit() {
-      //Concat is all about completeion. Waiting for one observable to complete
-      //before subscribing and using next observable. This way sequence can be maintained
-      // this.form.valueChanges. ConcatMap is taking the values from value changes, creating
-      // new observable subscribing to them and concatinating them together
-      this.form.valueChanges
-      .pipe(
-       //First this checks whether form is valid or not
-          filter(() => this.form.valid),
-          concatMap(changes => this.saveMovie(changes))
-           )
-           .subscribe();
-    }
-       saveMovie(changes) {
-       return fromPromise(fetch(`/api/movies/${this.movie.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(changes),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }));
+      
     }
 
 
     ngAfterViewInit() {
-     //Exhaust Map makes sure same value shouldn't go down the line.
-     //exhaustMap makes sure that repeated stream of clicks won't happen.
-     //This will take only one click in the stream of events.
-     //fromEvent will capture the button click and turn into observable
-     //so that we can subscribe to click stream here
-      fromEvent(this.saveButton.nativeElement, 'click')
-               .pipe(
-               exhaustMap(() => this.saveMovie(this.form.value))
-               ).subscribe();
+     
      }
 
 

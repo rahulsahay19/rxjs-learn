@@ -11,11 +11,6 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
      ngOnInit() {
-     const interval$ = interval(1000);
-     const sub = interval$.subscribe(console.log);
-      setTimeout(() => {
-        sub.unsubscribe();
-      }, 5000);
     }
 
 }
