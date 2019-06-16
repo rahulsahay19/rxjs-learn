@@ -33,7 +33,8 @@ export class MovieComponent implements OnInit, AfterViewInit {
         }
         ngOnInit() {
             this.movieId = this.route.snapshot.params['id'];
-            
+
+             
         }
      
         ngAfterViewInit() {

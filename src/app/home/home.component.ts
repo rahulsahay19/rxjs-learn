@@ -1,20 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {interval, Observable, of, timer, noop} from 'rxjs';
-import {catchError, delayWhen, map, retryWhen, shareReplay, tap} from 'rxjs/operators';
-import { Movie } from '../model/movie';
-import { createHttpObservable } from '../../common/util';
-
+import { Component, OnInit } from "@angular/core";
+import { interval, Observable, of, timer, noop } from "rxjs";
+import {
+  catchError,
+  delayWhen,
+  map,
+  retryWhen,
+  shareReplay,
+  tap
+} from "rxjs/operators";
+import { Movie } from "../model/movie";
+import { createHttpObservable } from "../../common/util";
 
 @Component({
-    selector: 'home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+  selector: "home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
+  thrillerMovies$: Observable<Movie[]>;
+  actionMovies$: Observable<Movie[]>;
+  constructor() {}
+  ngOnInit() {
+    const http$ = createHttpObservable("/api/movies");
 
-     constructor() {}
-     ngOnInit() {
+    const movies$ :Observable<Movie[]> = 
+        http$.pipe(
+          tap(() => console.log('http request executed')),
+          map(res => Object.values(res["payload"])),
+          shareReplay()
+        );
     
+    this.thrillerMovies$ = movies$.pipe(
+      map(movies => movies.filter(movie => movie.genre === "Thriller"))
+    );
+    
+    this.actionMovies$ = movies$.pipe(
+      map(movies => movies.filter(movie => movie.genre === "Action"))
+    );
   }
-
 }

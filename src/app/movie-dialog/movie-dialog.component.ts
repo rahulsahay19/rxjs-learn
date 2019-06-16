@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import {fromEvent} from 'rxjs';
 import {concatMap, distinctUntilChanged, exhaustMap, filter, mergeMap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
+import { saveMovie } from '../../../server/save-movie.route';
 
 @Component({
     selector: 'movie-dialog',
@@ -39,9 +40,25 @@ export class MovieDialogComponent implements OnInit, AfterViewInit {
 
     }
 
-      ngOnInit() {
-      
-    }
+        ngOnInit() {
+     
+        this.form.valueChanges
+        .pipe(
+         //First this checks whether form is valid or not
+            filter(() => this.form.valid),
+            concatMap(changes => this.saveMovie(changes))
+             )
+             .subscribe();
+      }
+         saveMovie(changes) {
+         return fromPromise(fetch(`/api/movies/${this.movie.id}`, {
+              method: 'PUT',
+              body: JSON.stringify(changes),
+              headers: {
+                  'content-type': 'application/json'
+              }
+          }));
+      }
 
 
     ngAfterViewInit() {
