@@ -46,7 +46,7 @@ export class MovieDialogComponent implements OnInit, AfterViewInit {
         .pipe(
          //First this checks whether form is valid or not
             filter(() => this.form.valid),
-            concatMap(changes => this.saveMovie(changes))
+            mergeMap(changes => this.saveMovie(changes))
              )
              .subscribe();
       }
