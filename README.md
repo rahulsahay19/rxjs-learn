@@ -34,7 +34,7 @@ We can install the master branch using the following commands:
     
 This repository is made of several separate npm modules, that are installable separately. For example, to run the au-input module, we can do the following:
     
-    git checkout feature/rxjs-learn-initial
+    git checkout -b [yourbranchname] origin/feature/rxjs-learn-initial
     cd rxjs-learn
     npm install
 
